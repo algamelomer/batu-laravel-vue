@@ -6,12 +6,12 @@
     <p v-if="items.main_title" class=" max-w-[53rem] text-center text-[#ccd2e9] text-lg font-medium mb-9">{{
       items.main_title }}</p>
   </div>
-  <div class="flex lg:w-11/12 justify-between">
-    <div class=" flex flex-row md:flex-col gap-4">
+  <div class="flex flex-col min-[1222px]:flex-row lg:w-11/12 justify-between">
+    <div class=" grid grid-cols-1 items-center md:grid-cols-2  min-[1222px]:grid-cols-1 gap-4 ">
       <!-- cards -->
       <div v-for="items in apiCard" :key="items.id">
         <div v-if="items.title && items.img" :class="{ 'active-card': items.isActive ,}"
-          class="card w-96 h-32 bg-card_gray cursor-pointer flex transition duration-1000 ease-in-out " 
+          class="m-auto card w-96 h-32 bg-card_gray cursor-pointer flex transition duration-1000 ease-in-out " 
           @click="handleclick(items)">
           <div class=" w-1/3 h-full">
             <img :src="items.img" alt="" class=" w-full h-full object-cover">
@@ -31,9 +31,9 @@
       </div>
     </div>
     <!-- main card -->
-    <div class=" bg-card_gray min-w-[35rem] flex">
+    <div class=" bg-card_gray lg:min-w-[35rem] flex mt-6 min-[1222px]:mt-0 pb-4 md:p-0">
       <div class="items-center flex flex-col gap-14 m-auto px-6">
-        <div class=" w-96 h-64">
+        <div class=" w-80 sm:w-96 h-64">
           <img :src="mainCard.img" alt="" class="w-full h-full object-cover">
         </div>
         <h2 class=" text-primary_green text-center text-2xl font-semibold">{{ mainCard.title }}</h2>
@@ -84,19 +84,15 @@ export default {
         mainCard.value.img = initialItem.img;
         mainCard.value.id = initialItem.id;
         activecard()
-
-
-
-
       }
       setInterval(() => {
-        if (apiData.value.length > 0 && !isPaused) {
-          const nextItem = apiData.value[counter];
+        if (apiCard.value.length > 0 && !isPaused) {
+          const nextItem = apiCard.value[counter];
           mainCard.value.title = nextItem.title;
           mainCard.value.content = nextItem.content;
           mainCard.value.img = nextItem.img;
           mainCard.value.id = nextItem.id;
-          counter = (counter + 1) % apiData.value.length;
+          counter = (counter + 1) % apiCard.value.length;
           activecard()
         }
       }, 5000);
