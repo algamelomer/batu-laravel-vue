@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "fname": "Atul",
+        "lname": "Bhavsar",
+        "age": "10 Years",
+        "email": "atul@gmail.com",
+        "phone": "9685958698",
+        "avatar": "https://i.postimg.cc/d3ykpLs8/stud1.jpg"
+    },
+    {
+        "id": 7,
+        "fname": "Foram",
+        "lname": "Dobariya",
+        "age": "20 Years",
+        "email": "sanju@gmail.com",
+        "phone": "9856985698",
+        "avatar": "https://i.postimg.cc/QtWp5XBn/stud7.jpg"
+    }
+]
