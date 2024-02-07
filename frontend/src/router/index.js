@@ -1,13 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/main/HomeView.vue'
+import Main from '../views/Main.vue'
 
 const router = createRouter({
     history: createWebHistory(
         import.meta.env.BASE_URL),
     routes: [{
             path: '/',
-            name: 'home',
-            component: HomeView
+            name: 'Main',
+            component: Main,
+            children: [{
+                    path: '',
+                    name: 'home',
+                    component: HomeView
+                }, {
+                    path: '/faculties',
+                    name: 'faculties',
+                    component: () =>
+                        import ('../views/main/Faculties.vue')
+                },
+                {
+                    path: '/faculties/:id',
+                    component: () =>
+                        import ('@/components/faculties/facultie.vue')
+                },
+                {
+                    path: '/contact',
+                    name: 'contact',
+                    component: () =>
+                        import ('../views/main/Contact.vue')
+                },
+                {
+                    path: '/about',
+                    name: 'about',
+
+                    component: () =>
+                        import ('../views/main/AboutView.vue')
+                }
+            ]
         },
         {
             path: '/registration',
@@ -21,18 +51,55 @@ const router = createRouter({
             component: () =>
                 import ('@/views/guest/Login.vue')
         },
-        // {
-        //     path: '/home',
-        //     name: 'Home',
-        //     component: () =>
-        //         import ('@/views/auth/Home.vue')
-        // },
         {
             path: '/dashboard',
             name: 'Dashboard',
             component: () =>
-                import ('@/views/auth/Dashboard.vue')
+                import ('@/views/auth/Dashboard.vue'),
+            children: [{
+                    path: '',
+                    name: 'DashboardHome',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_home.vue'),
+                },
+                {
+                    path: '/dashboard/Faculties',
+                    name: 'DashboardFaculties',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_faculties.vue'),
+                }, {
+                    path: '/dashboard/News',
+                    name: 'DashboardNews',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_news.vue'),
+                }, {
+                    path: '/dashboard/Users',
+                    name: 'DashboardUsers',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_users.vue'),
+                }, {
+                    path: '/dashboard/Departments',
+                    name: 'DashboardDepartments',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_departments.vue'),
+                },
+                {
+                    path: '/dashboard/:category/Upload', // Dynamic parameter ":category"
+                    name: 'DashboardUpload',
+                    component: () =>
+                        import ('@/components/dashboard/Upload.vue'),
+                },
+                {
+                    path: '/dashboard/:category/edit/:id', // Dynamic parameter ":category"
+                    name: 'DashboardEdit',
+                    component: () =>
+                        import ('@/components/dashboard/Edit.vue'),
+                }
+
+
+            ]
         },
+
         {
             path: '/forgot-password',
             name: 'ForgotPassword',
@@ -45,32 +112,7 @@ const router = createRouter({
             component: () =>
                 import ('@/views/guest/PasswordReset.vue')
         },
-        {
-            path: '/faculties',
-            name: 'faculties',
-            component: () =>
-                import ('../views/Faculties.vue')
-        },
-        {
-            path: '/faculties/:id',
-            component: () =>
-                import ('@/components/faculties/facultie.vue')
-        },
-        {
-            path: '/contact',
-            name: 'contact',
-            component: () =>
-                import ('../views/Contact.vue')
-        },
-        {
-            path: '/about',
-            name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import ('../views/AboutView.vue')
-        }
+
     ]
 });
 
