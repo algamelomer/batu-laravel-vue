@@ -72,6 +72,17 @@ const router = createRouter({
                     name: 'DashboardNews',
                     component: () =>
                         import ('@/views/auth/dashboard/Dashboard_news.vue'),
+                },
+                {
+                    path: '/dashboard/Article',
+                    name: 'DashboardArticle',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_article.vue'),
+                }, {
+                    path: '/dashboard/Letter',
+                    name: 'DashboardLetter',
+                    component: () =>
+                        import ('@/views/auth/dashboard/Dashboard_letter.vue'),
                 }, {
                     path: '/dashboard/Users',
                     name: 'DashboardUsers',
@@ -84,13 +95,13 @@ const router = createRouter({
                         import ('@/views/auth/dashboard/Dashboard_departments.vue'),
                 },
                 {
-                    path: '/dashboard/:category/Upload', // Dynamic parameter ":category"
+                    path: '/dashboard/:category/Upload',
                     name: 'DashboardUpload',
                     component: () =>
                         import ('@/components/dashboard/Upload.vue'),
                 },
                 {
-                    path: '/dashboard/:category/edit/:id', // Dynamic parameter ":category"
+                    path: '/dashboard/:category/edit/:id',
                     name: 'DashboardEdit',
                     component: () =>
                         import ('@/components/dashboard/Edit.vue'),

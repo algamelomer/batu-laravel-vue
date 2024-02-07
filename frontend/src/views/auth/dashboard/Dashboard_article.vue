@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-around">
-        <h1>Want to add news?</h1>
+        <h1>Want to add article?</h1>
         <button @click="handleClick"
             class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 border border-gray-500 rounded">Add</button>
     </div>
@@ -39,7 +39,7 @@ const apiData = ref(false)
 const fetchData = async () => {
     try {
         const response = await axios.get('/api/posts');
-        filterData(response.data, apiData,"type","news");
+        filterData(response.data, apiData,"type","article");
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -52,10 +52,10 @@ onMounted(() => {
     fetchData();
 });
 const handleClick = () => {
-    router.push({ name: 'DashboardUpload', params: { category: 'news' } });
+    router.push({ name: 'DashboardUpload', params: { category: 'article' } });
 };
 const handleEdit = (id) =>{
-    router.push({ name: 'DashboardEdit', params: { category: 'news' ,id: id} });
+    router.push({ name: 'DashboardEdit', params: { category: 'article' ,id: id} });
 }
 
 

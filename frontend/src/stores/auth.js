@@ -88,12 +88,23 @@ export const useAuthStore = defineStore('auth', {
             this.authErrors = [];
             try {
                 await this.getToken();
-                const response = await axios.post('/api/posts/' + data.id, {
-                    title: data.title,
-                    description: data.description,
-                    file: data.file,
-                    type: "news",
-                    user_id: data.user_id,
+                if (!data.id) {
+                    data.id = '';
+                }
+
+                const formData = new FormData();
+                formData.append('title', data.title);
+                formData.append('description', data.description);
+                formData.append('file', data.file);
+                formData.append('type', 'news');
+                formData.append('user_id', data.user_id);
+
+                console.log(data.file);
+
+                const response = await axios.post('/api/posts/' + data.id, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 });
 
                 if (response.status === 201) {
@@ -111,47 +122,13 @@ export const useAuthStore = defineStore('auth', {
                         alert("Error: Validation failed");
                     } else {
                         alert("Error: Server error");
+
                     }
                 } else {
                     alert("Error: Network error");
-                    // Handle network errors
                 }
             }
         },
-
-        // async handleNews(data) {
-        //     this.authErrors = [];
-        //     try {
-        //         await this.getToken();
-        //         const response = await axios.post('/api/posts', {
-        //             title: data.title,
-        //             description: data.description,
-        //             file: data.file,
-        //             type: "news",
-        //             user_id: data.user_id,
-        //         });
-
-        //         if (response.status === 201) {
-        //             alert("Success");
-        //         } else {
-        //             alert("Error: Unexpected status code");
-        //             console.log(data)
-        //         }
-        //     } catch (error) {
-        //         if (error.response) {
-        //             if (error.response.status === 422) {
-        //                 this.authErrors = error.response.data.errors;
-        //                 alert("Error: Validation failed");
-        //             } else {
-        //                 alert("Error: Server error");
-        //                 // Handle other server errors
-        //             }
-        //         } else {
-        //             alert("Error: Network error");
-        //             // Handle network errors
-        //         }
-        //     }
-        // },
 
         async handleNewsDelete(data) {
             this.authErrors = [];
@@ -175,6 +152,100 @@ export const useAuthStore = defineStore('auth', {
                 }
             }
         },
+
+        async handleArticle(data) {
+            this.authErrors = [];
+            try {
+                await this.getToken();
+                if (!data.id) {
+                    data.id = '';
+                }
+
+                const formData = new FormData();
+                formData.append('title', data.title);
+                formData.append('description', data.description);
+                formData.append('file', data.file);
+                formData.append('type', 'article');
+                formData.append('user_id', data.user_id);
+
+                console.log(data.file);
+
+                const response = await axios.post('/api/posts/' + data.id, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (response.status === 201) {
+                    alert("Success");
+                } else if (response.status === 200) {
+                    alert("Success");
+                } else {
+                    alert("Error: Unexpected status code");
+                    console.log(data)
+                }
+            } catch (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        this.authErrors = error.response.data.errors;
+                        alert("Error: Validation failed");
+                    } else {
+                        alert("Error: Server error");
+
+                    }
+                } else {
+                    alert("Error: Network error");
+                }
+            }
+        },
+
+
+        async handleLetter(data) {
+            this.authErrors = [];
+            try {
+                await this.getToken();
+                if (!data.id) {
+                    data.id = '';
+                }
+
+                const formData = new FormData();
+                formData.append('title', data.title);
+                formData.append('description', data.description);
+                formData.append('file', data.file);
+                formData.append('type', 'news');
+                formData.append('user_id', data.user_id);
+
+                console.log(data.file);
+
+                const response = await axios.post('/api/posts/' + data.id, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                if (response.status === 201) {
+                    alert("Success");
+                } else if (response.status === 200) {
+                    alert("Success");
+                } else {
+                    alert("Error: Unexpected status code");
+                    console.log(data)
+                }
+            } catch (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        this.authErrors = error.response.data.errors;
+                        alert("Error: Validation failed");
+                    } else {
+                        alert("Error: Server error");
+
+                    }
+                } else {
+                    alert("Error: Network error");
+                }
+            }
+        },
+
 
 
         // async handleLogout() {

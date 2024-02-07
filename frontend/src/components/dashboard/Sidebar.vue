@@ -32,6 +32,9 @@ let links = [
 	{ id: 2, name: 'DashboardFaculties', label: 'faculties', icon: "building-columns" },
 	{ id: 3, name: 'DashboardDepartments', label: 'departments', icon: "school" },
 	{ id: 4, name: 'DashboardNews', label: 'News', icon: "newspaper" },
+	{ id: 5, name: 'DashboardArticle', label: 'Article', icon: "book" },
+	{ id: 6, name: 'DashboardLetter', label: 'Letter', icon: "scroll" },
+
 ]
 
 const isSidebarHidden = ref(false)

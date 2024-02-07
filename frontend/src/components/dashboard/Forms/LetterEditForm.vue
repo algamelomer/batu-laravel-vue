@@ -1,6 +1,6 @@
 <template>
     <form class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-700 m-auto"
-        @submit.prevent="authStore.handleNews(form)">
+        @submit.prevent="authStore.handleLetter(form)">
         <img v-if="form.fileUrl" :src="form.fileUrl" alt="Uploaded Photo" class="mx-auto my-4 max-w-full h-auto" />
         <input type="file" @change="handleFileChange" />
         <div class="px-6 py-4">
