@@ -15,6 +15,7 @@ trait HandleFileJson
     |--------------------------------------------------------------------------
     */
     private $jsonFilePath = '/dataInterface/dataInterface.json';
+    // private $DomainName = 'http://127.0.0.1:8000';
     /*
     |--------------------------------------------------------------------------
     | Function For Getting Data From JSON file

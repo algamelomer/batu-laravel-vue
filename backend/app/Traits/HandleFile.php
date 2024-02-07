@@ -6,6 +6,14 @@ trait HandleFile
 {
     /*
     |--------------------------------------------------------------------------
+    | Domain Name
+    |--------------------------------------------------------------------------
+    */
+
+    private $DomainName = 'http://127.0.0.1:8000';
+
+    /*
+    |--------------------------------------------------------------------------
     | Upload Files Function
     |--------------------------------------------------------------------------
     */
@@ -41,8 +49,9 @@ trait HandleFile
         $fileName = $name ?? pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $uploadedFile->getClientOriginalExtension();
         $fileFullName = $fileName . '.' . $extension;
-
-        $path = $uploadedFile->storeAs($folder, $fileFullName, $disk);
-        return $path;
+        $domain = $this->DomainName;
+        $path = $uploadedFile->storeAs('assets/' . $folder, $fileFullName, $disk);
+        $fullPath = $domain . '/' . $path;
+        return $fullPath;
     }
 }
